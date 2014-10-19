@@ -1210,6 +1210,21 @@ if test "x$rockminer" = xyes; then
 fi
 AM_CONDITIONAL([USE_ROCKMINER], [test x$rockminer = xyes])
 
+driverlist="$driverlist blockerupter"
+AC_ARG_ENABLE([blockerupter],
+	[AC_HELP_STRING([--disable-blockerupter],[Compile support for ASICMiner Tube/Prisma (default enabled)])],
+	[blockerupter=$enableval],
+	[blockerupter=$ddyes]
+)
+if test "x$blockerupter" = xyes; then
+	AC_DEFINE([USE_BLOCKERUPTER], [1], [Defined to 1 if BlockErupter support is wanted])
+	need_lowl_vcom=yes
+	has_asic=yes
+	have_udevrules=true
+fi
+AM_CONDITIONAL([USE_BLOCKERUPTER], [test x$blockerupter = xyes])
+
+
 
 if test "x$need_lowl_vcom" != "xno"; then
 	# Lowlevel VCOM doesn't need libusb, but it can take advantage of it to reattach drivers

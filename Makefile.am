@@ -359,6 +359,10 @@ if USE_ROCKMINER
 bfgminer_SOURCES += driver-rockminer.c
 endif
 
+if USE_BLOCKERUPTER
+bfgminer_SOURCES += driver-blockerupter.c
+endif
+
 if NEED_BFG_LOWL_FTDI
 bfgminer_SOURCES += lowl-ftdi.c lowl-ftdi.h
 endif
